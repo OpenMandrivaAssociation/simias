@@ -15,6 +15,7 @@ Patch3:         simias-make.patch
 Patch4:         simias-warnings.patch
 Patch5:         simias-fix-format-errors.patch
 Patch6:         simias-fix-linking.patch
+Patch7:         simias-use-external-gsoap.patch
 Requires:       mono-data >= 1.2.2
 Requires:       mono-web >= 1.2.2
 Requires:       log4net >= 1.2.9
@@ -66,6 +67,20 @@ iFolder project, although it has potential to do much more.
 export BUILDNUM=%{buildnum}
 autoreconf -i
 %configure2_5x --with-runasclient
+
+# rebuild shipped gsoap
+rm dependencies/external/tools/gsoap/linux-2.7/soapcpp2  
+rm dependencies/external/tools/gsoap/linux-2.7/wsdl2h  
+pushd dependencies/external/tools/gsoap/linux-2.7  
+cd src
+make -f MakefileMacOSX COFLAGS="%{optflags} -fno-strict-aliasing" LIBS=""
+cp soapcpp2 ..  
+cd ..  
+cd wsdl  
+make -f MakefileSolaris COFLAGS="%{optflags} -fno-strict-aliasing" LIBS="-lnsl"
+cd ..
+popd
+
 # parallel build is broken
 make
 
