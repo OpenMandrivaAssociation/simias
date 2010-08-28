@@ -27,6 +27,7 @@ BuildRequires:  libflaim-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  log4net-devel
 BuildRequires:  ncurses-devel
+BuildRequires:  libuuid-devel
 BuildRequires:  mono-data
 BuildRequires:  mono-devel
 BuildRequires:  mono-web
