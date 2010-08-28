@@ -15,7 +15,6 @@ Patch3:         simias-make.patch
 Patch4:         simias-warnings.patch
 Patch5:         simias-fix-format-errors.patch
 Patch6:         simias-fix-linking.patch
-Patch7:         simias-use-external-gsoap.patch
 Requires:       mono-data >= 1.2.2
 Requires:       mono-web >= 1.2.2
 Requires:       log4net >= 1.2.9
