@@ -43,7 +43,7 @@ potential to do much more.
 %package devel
 License:        GPLv2
 Summary:        Development files for simias
-Group:          Development/Libraries/C and C++
+Group:          Development/C
 Requires:       %{name} = %{version}
 
 %description devel
