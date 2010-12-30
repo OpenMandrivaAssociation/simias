@@ -1,8 +1,9 @@
 %define buildnum 10090
+%define _requires_exceptions mono(Mono.WebServer)
 
 Name:           simias
 Version:        1.8.3.10090.1
-Release:        %mkrel 3
+Release:        %mkrel 4
 Url:            http://www.ifolder.com
 License:        GPLv2
 Group:          System/Libraries
