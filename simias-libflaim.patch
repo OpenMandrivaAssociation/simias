@@ -1,0 +1,13 @@
+Index: src/core/FlaimProvider/FlaimWrapper/Makefile.am
+===================================================================
+--- src/core/FlaimProvider/FlaimWrapper/Makefile.am	(revision 7330)
++++ src/core/FlaimProvider/FlaimWrapper/Makefile.am	(working copy)
+@@ -91,7 +91,7 @@
+ lib=@LIB64@
+ 
+ # NOTE: The following is a _hack_. 
+-LIBFLAIM_LIBS_HACK = "-lpthread -lrt -lstdc++ -ldl -lncurses /usr/$(lib)/libflaim.a"
++LIBFLAIM_LIBS_HACK = "-lpthread -lrt -lstdc++ -ldl -lncurses -lflaim"
+ 
+ libFlaimWrapper_la_LDFLAGS = $(LIBFLAIM_LIBS_HACK)
+ 

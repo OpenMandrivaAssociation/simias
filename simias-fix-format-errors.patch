@@ -1,0 +1,45 @@
+diff -Naur -x '*~' simias/dependencies/external/tools/gsoap/linux-2.7/wsdl/wsdl2h.cpp simias-fix-format-errors/dependencies/external/tools/gsoap/linux-2.7/wsdl/wsdl2h.cpp
+--- simias/dependencies/external/tools/gsoap/linux-2.7/wsdl/wsdl2h.cpp	2010-01-05 13:31:48.000000000 +0100
++++ simias-fix-format-errors/dependencies/external/tools/gsoap/linux-2.7/wsdl/wsdl2h.cpp	2010-08-27 23:23:02.508954577 +0200
+@@ -109,7 +109,7 @@
+ --------------------------------------------------------------------------------\n";
+ 
+ int main(int argc, char **argv)
+-{ fprintf(stderr, copyrightnotice);
++{ fprintf(stderr, "%s", copyrightnotice);
+   options(argc, argv);
+   wsdl__definitions definitions;
+   if (infile)
+diff -Naur -x '*~' simias/src/core/libsimias/simias.c simias-fix-format-errors/src/core/libsimias/simias.c
+--- simias/src/core/libsimias/simias.c	2010-01-05 13:32:28.000000000 +0100
++++ simias-fix-format-errors/src/core/libsimias/simias.c	2010-08-27 23:44:05.915265412 +0200
+@@ -78,7 +78,7 @@
+ 	}
+ 	
+ 	sprintf (dot_local_share_simias_path, "%s%s", home_dir, "/.local/share/simias");
+-	sprintf (dest_path, dot_local_share_simias_path);
++	sprintf (dest_path, "%s", dot_local_share_simias_path);
+ #endif
+ 
+ 	return dest_path;
+diff -Naur -x '*~' simias/src/core/SimiasClient/libsimias-event/simias-event-client.c simias-fix-format-errors/src/core/SimiasClient/libsimias-event/simias-event-client.c
+--- simias/src/core/SimiasClient/libsimias-event/simias-event-client.c	2010-01-05 13:32:25.000000000 +0100
++++ simias-fix-format-errors/src/core/SimiasClient/libsimias-event/simias-event-client.c	2010-08-27 23:35:57.677555520 +0200
+@@ -1248,7 +1248,7 @@
+ 		return NULL;
+ 	}
+ 
+-	sprintf (dest_path, user_profile);
++	sprintf (dest_path, "%s", user_profile);
+ #else
+ 	char *home_dir;
+ 	char dot_local_path [512];
+@@ -1273,7 +1273,7 @@
+ 		return NULL;
+ 	}
+ 	
+-	sprintf (dest_path, dot_local_share_path);
++	sprintf (dest_path, "%s", dot_local_share_path);
+ #endif	/* WIN32 */
+ 
+ 	return dest_path;

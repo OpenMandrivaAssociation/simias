@@ -1,0 +1,76 @@
+Index: configure.in
+===================================================================
+--- configure.in	(revision 7330)
++++ configure.in	(working copy)
+@@ -600,24 +600,6 @@
+ 	esac],
+  	 [runasclient="FALSE"
+                 AC_OUTPUT([
+-		src/server/Makefile
+-		src/server/Simias.config
+-		src/server/setup/Makefile
+-		src/server/DiscoveryWS/Makefile
+-		src/server/DiscoveryWS/AssemblyInfo.cs
+-		src/server/Simias.HttpFile/Makefile
+-		src/server/Simias.HttpFile/AssemblyInfo.cs
+-		src/server/Simias.Server/Makefile
+-		src/server/Simias.Server/AssemblyInfo.cs
+-		src/server/Simias.HostService/Makefile
+-		src/server/Simias.LdapProvider/Makefile
+-		src/server/Simias.LdapProvider/AssemblyInfo.cs
+-		src/server/Simias.ADLdapProvider/Makefile
+-		src/server/Simias.ADLdapProvider/AssemblyInfo.cs
+-		src/server/Simias.OpenLdapProvider/Makefile
+-		src/server/Simias.OpenLdapProvider/AssemblyInfo.cs
+-		src/server/Simias.ClientUpdate/Makefile
+-		src/server/Simias.ClientUpdate/AssemblyInfo.cs
+                 ])
+          ]
+ 	)
+@@ -766,12 +748,6 @@
+ src/client/SimiasDirectoryMapping
+ src/webservices/Makefile
+ src/webservices/AssemblyInfo.cs
+-src/webaccess/Makefile
+-src/webaccess/AssemblyInfo.cs
+-src/webaccess/Log4Net.config
+-src/admin/Makefile
+-src/admin/AssemblyInfo.cs
+-src/admin/Log4Net.config
+ src/setup/Makefile
+ src/setup/apache/Makefile
+ src/setup/apache/ifolder_apache.conf
+@@ -791,8 +767,6 @@
+ src/utils/usercmd/simias-user
+ src/utils/usercmd/simias-user.cmd
+ package/Makefile
+-package/windows/Makefile
+-package/darwin/Makefile
+ ])
+ 
+ 
+Index: src/Makefile.am
+===================================================================
+--- src/Makefile.am	(revision 7330)
++++ src/Makefile.am	(working copy)
+@@ -2,7 +2,7 @@
+ if SIMIAS_AS_CLIENT
+ SUBDIRS = core client
+ else
+-SUBDIRS = core server webservices webaccess admin setup utils
++SUBDIRS = core webservices setup utils
+ endif
+ 
+ DIST_SUBDIRS = $(SUBDIRS)
+Index: package/Makefile.am
+===================================================================
+--- package/Makefile.am	(revision 7330)
++++ package/Makefile.am	(working copy)
+@@ -22,7 +22,6 @@
+ #######################################################################
+ SUBDIRS = @SIMIAS_OS@
+ 
+-DIST_SUBDIRS = darwin windows
+ 
+ sdk:
+ 	$(MAKE) -C $(SIMIAS_OS) $@

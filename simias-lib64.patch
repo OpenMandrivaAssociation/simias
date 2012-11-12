@@ -1,0 +1,36 @@
+Index: configure.in
+===================================================================
+--- configure.in	(revision 7330)
++++ configure.in	(working copy)
+@@ -88,12 +88,9 @@
+ # Check for a 32 / 64 
+ #HACK ALERT : for libflaim 64bit builds
+ case $host_cpu in
+-    x86_64)
++    x86_64|amd64|s390x|ppc64|powerpc64)	
+ 	LIB64='lib64'
+     ;;
+-    amd64)
+-	LIB64='lib64'
+-    ;;
+     *)
+ 	LIB64='lib'
+     ;;
+@@ -302,7 +299,7 @@
+ 		LDOUT='-o '
+ 	AC_PROG_CXX(am__fastdepCXX)
+         AC_CHECK_PROG(CXX, g++, g++)
+-        # AC_CHECK_PROG(CXX, g++-3.3, g++-3.3)
++        AC_CHECK_PROG(CXX, g++-43, g++-43)
+ 		# LD='$(CXX) -dynamiclib '
+ 		StoreProviderAssembly="SimiasLib.dll"
+ 		StoreProviderType="Simias.Storage.Provider.Flaim.FlaimProvider"
+@@ -310,6 +307,8 @@
+ 		#StoreProviderType="Simias.Storage.Provider.Sqlite.SqliteProvider"
+ 		mappingpath="${exec_prefix}/lib/simias/web/bin/Simias.exe"
+ 				 GSOAP_PATH="$TOOLDIR/gsoap/macosx-x86-2.7"
++	CXX=g++-4.3
++        CXXCPP=g++-4.3 -E
+     ;;
+     #
+     # Linux-specific configuration

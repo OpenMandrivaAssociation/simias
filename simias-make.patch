@@ -1,0 +1,81 @@
+Index: src/core/SimiasClient/libsimias-manager/Makefile.am
+===================================================================
+--- src/core/SimiasClient/libsimias-manager/Makefile.am.orig
++++ src/core/SimiasClient/libsimias-manager/Makefile.am
+@@ -48,9 +48,9 @@ endif
+ 
+ 
+ else
+-lib_LIBRARIES = libsimias-manager.a
++lib_LTLIBRARIES = libsimias-manager.la
+ 
+-libsimias_manager_a_SOURCES = 	simias-manager.c \
++libsimias_manager_la_SOURCES = 	simias-manager.c \
+ 				simias-manager.h
+ 
+ pkginclude_HEADERS = \
+@@ -58,13 +58,11 @@ pkginclude_HEADERS = \
+ 
+ if LINUX
+ 
+-libsimias_manager_a_CXXFLAGS = -c
++libsimias_manager_la_CXXFLAGS = -c
+ 
+-install-exec-local: libsimias-manager.a
+-	$(mkinstalldirs) $(DESTDIR)$(libdir)
+-
+-uninstall-local:
+-	cd $(DESTDIR)$(libdir); rm -f libsimias-manager.a
++install-exec-hook:
++	rm -f $(DESTDIR)$(libdir)/libsimias-manager.a
++	rm -f $(DESTDIR)$(libdir)/libsimias-manager.la
+ 
+ endif
+ 
+Index: src/core/SimiasClient/simias-client-c.pc.in
+===================================================================
+--- src/core/SimiasClient/simias-client-c.pc.in.orig
++++ src/core/SimiasClient/simias-client-c.pc.in
+@@ -10,6 +10,6 @@ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+ includedir=@prefix@/include/simias
+ 
+-Libs:-Wl,-rpath,${libdir} -L${libdir} -lsimias -lsimias-event ${libdir}/libsimias-manager.a
++Libs:-Wl,-rpath,${libdir} -L${libdir} -lsimias -lsimias-event -lsimias-manager
+ Cflags: -I${includedir}
+ 
+Index: src/core/libsimias/Makefile.am
+===================================================================
+--- src/core/libsimias/Makefile.am.orig
++++ src/core/libsimias/Makefile.am
+@@ -11,8 +11,6 @@ dist-hook:
+ 
+ lib_LTLIBRARIES = libsimias.la
+ 
+-override CFLAGS =
+-
+ libsimias_la_SOURCES = \
+  	envC.c simiasClientLib.c stdsoap2.c simias.c simias.h simiasweb.c simiasweb.h
+  	
+Index: src/core/SimiasClient/libsimias-event/Makefile.am
+===================================================================
+--- src/core/SimiasClient/libsimias-event/Makefile.am.orig
++++ src/core/SimiasClient/libsimias-event/Makefile.am
+@@ -1,8 +1,5 @@
+ lib_LTLIBRARIES = libsimias-event.la
+ 
+-# Override CFLAGS so that -nologo and -W3 are NOT included
+-override CFLAGS =
+-
+ libsimias_event_la_SOURCES = \
+ 	simias-event-client.c simias-event-client.h
+ 
+@@ -14,7 +11,7 @@ libsimias_event_la_CFLAGS = \
+ 	$(XML2_CFLAGS) -DDARWIN
+ else
+ libsimias_event_la_CFLAGS = \
+-	$(XML2_CFLAGS)
++	$(XML2_CFLAGS) $(CFLAGS_OPTIMIZE)
+ endif
+ 
+ if !WINDOWS
