@@ -4,7 +4,7 @@
 Name:           simias
 Version:        1.8.3.10090.1
 Release:        %mkrel 4
-Url:            http://www.ifolder.com
+Url:            https://www.ifolder.com
 License:        GPLv2
 Group:          System/Libraries
 Summary:        Collection-Oriented Data Storage
