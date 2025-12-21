@@ -20,6 +20,11 @@ Requires:       mono-data >= 1.2.2
 Requires:       mono-web >= 1.2.2
 Requires:       log4net >= 1.2.9
 Requires:       xsp >= 1.2.5
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  flex
 BuildRequires:  bison
 BuildRequires:  e2fsprogs-devel
